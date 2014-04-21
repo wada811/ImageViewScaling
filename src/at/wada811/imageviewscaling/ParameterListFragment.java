@@ -55,6 +55,8 @@ public class ParameterListFragment extends ExpandableListFragment implements Par
 
         public void setAdjustViewBounds(boolean adjustViewBounds);
 
+        public void setFitDisplayInside();
+
     }
 
     public static ParameterListFragment newInstance(){
@@ -99,6 +101,17 @@ public class ParameterListFragment extends ExpandableListFragment implements Par
     @Override
     public void onGroupCollapse(int groupPosition){
         super.onGroupCollapse(groupPosition);
+    }
+
+    @Override
+    public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id){
+        switch(mAdapter.getGroupName(groupPosition)){
+            case fitDisplayInside:
+                mDelegate.setFitDisplayInside();
+                return true;
+            default:
+                return super.onGroupClick(parent, v, groupPosition, id);
+        }
     }
 
     @Override

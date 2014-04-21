@@ -38,7 +38,11 @@ public class Param {
         /**
          * 
          */
-        adjustViewBounds(R.string.adjustViewBounds);
+        adjustViewBounds(R.string.adjustViewBounds),
+        /**
+         * 
+         */
+        fitDisplayInside(R.string.fitDisplayInside);
 
         public int labelId;
 

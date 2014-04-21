@@ -8,6 +8,7 @@
     <string name="layout_width">layout_width</string>
     <string name="layout_height">layout_height</string>
     <string name="adjustViewBounds">adjustViewBounds</string>
+    <string name="fitDisplayInside">Fit Display Inside</string>
     <!-- scaleType -->
     <string name="scaleType_matrix">matrix</string>
     <string name="scaleType_fitXY">fitXY</string>

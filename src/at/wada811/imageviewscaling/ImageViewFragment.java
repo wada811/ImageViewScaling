@@ -15,6 +15,8 @@
  */
 package at.wada811.imageviewscaling;
 
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,7 +25,10 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.RelativeLayout;
 import at.wada811.imageviewscaling.ParameterListFragment.ParameterDelegate;
+import at.wada811.utils.BitmapUtils;
+import at.wada811.utils.DisplayUtils;
 
 public class ImageViewFragment extends Fragment {
 
@@ -93,6 +98,18 @@ public class ImageViewFragment extends Fragment {
                 mImageView.setAdjustViewBounds(adjustViewBounds);
             }
 
+            @Override
+            public void setFitDisplayInside(){
+                Bitmap bitmap = BitmapUtils.createBitmapFromDrawable(mImageView.getDrawable());
+                float factor = (float)DisplayUtils.getWidth(getActivity()) / bitmap.getWidth();
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(DisplayUtils.getWidth(getActivity()), (int)(bitmap.getHeight() * factor));
+                mImageView.setLayoutParams(params);
+                Matrix matrix = mImageView.getImageMatrix();
+                matrix.reset();
+                matrix.postScale(factor, factor);
+                mImageView.setImageMatrix(matrix);
+
+            }
         };
     }
 
